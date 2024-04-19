@@ -33,22 +33,9 @@ export default function TabLayout() {
         name="menu"
         options={{
           title: 'Menu',
-          headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="cutlery" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          // headerShown: false,
+          tabBarIcon: ({ color }) => (<TabBarIcon name="cutlery" color={color} />),
+
         }}
       />
       <Tabs.Screen
