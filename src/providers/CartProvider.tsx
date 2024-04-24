@@ -4,12 +4,14 @@ import * as Crypto from 'expo-crypto'
 
 type CartType = {
   items: CartItem[],
-  addItem: (product: Product, size: CartItem['size']) => void
+  addItem: (product: Product, size: CartItem['size']) => void;
+  updateQuantity: (itemId: string, amount: -1 | 1) => void
 }
 
 const CartContext = createContext<CartType>({
   items: [],
-  addItem: () => { }
+  addItem: () => { },
+  updateQuantity: () => { }
 });
 
 const CartProvider = ({ children }: PropsWithChildren) => {
@@ -18,23 +20,31 @@ const CartProvider = ({ children }: PropsWithChildren) => {
 
   const addItem = (product: Product, size: CartItem['size']) => {
     //if already in cart, increment quantity
-
+    const exisitingItem = items.find(item => item.product === product && item.size === size)
+    if (exisitingItem) {
+      updateQuantity(exisitingItem.id, 1)
+      return
+    }
 
     const newCartItem: CartItem = {
       product,
       size,
       quantity: 1,
       product_id: product.id,
-      id: UUID //generate
+      id: UUID
     }
 
     setItems([newCartItem, ...items])
   }
   //TODO: update quantity
+  const updateQuantity = (itemId: string, amount: -1 | 1) => {
+    const updatedItems = items.map(item => item.id !== itemId ? item : { ...item, quantity: item.quantity + amount }).filter((item) => item.quantity > 0)
+    setItems(updatedItems)
+  }
 
   return (
     <CartContext.Provider
-      value={{ items, addItem }}>
+      value={{ items, addItem, updateQuantity }}>
       {children}
     </CartContext.Provider>
   )
