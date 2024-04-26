@@ -39,9 +39,7 @@ const ProductDetailsScreen = () => {
         style={styles.image}
       />
 
-      <Text>Select Size</Text>
       <Text style={styles.price}>${product.price}</Text>
-      <Button onPress={addToCart} text='Add to Cart' />
     </View>
   )
 }
@@ -59,25 +57,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 'auto'
   },
-  sizes: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 10,
-  },
-  size: {
-    backgroundColor: 'gainsboro',
-    width: 50,
-    aspectRatio: 1,
-    borderRadius: 25,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  sizeText: {
-    fontSize: 20,
-    fontWeight: "500"
-  }
 })
 
 export default ProductDetailsScreen;
