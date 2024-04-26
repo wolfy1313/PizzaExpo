@@ -40,23 +40,6 @@ const ProductDetailsScreen = () => {
       />
 
       <Text>Select Size</Text>
-      <View style={styles.sizes}>
-        {sizes.map((size) => (
-          <Pressable
-            onPress={() => { setSelectedSize(size) }}
-            key={size}
-            style={[
-              styles.size, {
-                backgroundColor: selectedSize === size ? 'gainsboro' : 'white'
-              },
-            ]}
-          >
-            <Text style={[styles.sizeText, {
-              color: selectedSize === size ? 'black' : 'grey'
-            }]}>{size}</Text>
-          </Pressable>
-        ))}
-      </View>
       <Text style={styles.price}>${product.price}</Text>
       <Button onPress={addToCart} text='Add to Cart' />
     </View>
