@@ -6,8 +6,15 @@ const CreateProductScreen = () => {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
 
+  const resetFields = () => {
+    setName("");
+    setPrice("")
+  }
+
   const onCreate = () => {
-    console.warn("Creating Product: ", name)
+    console.warn("Creating Product: ", name, "with price: ", price);
+
+    resetFields()
   }
 
 
@@ -20,7 +27,12 @@ const CreateProductScreen = () => {
         placeholder='Name'
         style={styles.input} />
       <Text style={styles.label}>Price ($)</Text>
-      <TextInput placeholder='$9.99' style={styles.input} keyboardType='numeric' />
+      <TextInput
+        value={price}
+        onChangeText={setPrice}
+        placeholder='$9.99'
+        style={styles.input}
+        keyboardType='numeric' />
 
       <Button onPress={onCreate} text='Create' />
     </View>
