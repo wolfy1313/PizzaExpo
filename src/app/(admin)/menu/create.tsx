@@ -5,13 +5,36 @@ import React, { useState } from 'react'
 const CreateProductScreen = () => {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
+  const [errors, setErrors] = useState("")
 
   const resetFields = () => {
     setName("");
     setPrice("")
   }
 
+  const validateInput = () => {
+    if (!name) {
+      setErrors("Name is Required");
+      return false
+    }
+
+    if (!price) {
+      setErrors("Price is required")
+      return false
+    }
+
+    if (isNaN(parseFloat(price))) {
+      setErrors("Price is not a number")
+      return false
+    }
+    return true
+
+  }
+
   const onCreate = () => {
+    if (!validateInput()) {
+      return
+    }
     console.warn("Creating Product: ", name, "with price: ", price);
 
     resetFields()
@@ -33,7 +56,7 @@ const CreateProductScreen = () => {
         placeholder='$9.99'
         style={styles.input}
         keyboardType='numeric' />
-
+      <Text>{errors}</Text>
       <Button onPress={onCreate} text='Create' />
     </View>
   )
