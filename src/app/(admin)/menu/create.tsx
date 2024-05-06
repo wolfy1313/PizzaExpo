@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Image, Alert } from 'react-native'
 import Button from '@/src/components/Button'
 import React, { useState } from 'react'
 import { defaultPizzaImage } from '@/src/components/ProductListItem'
@@ -54,7 +54,7 @@ const CreateProductScreen = () => {
     if (!validateInput()) {
       return
     }
-    console.warn("Updating Product: ", name, "with price: ", price)
+    console.warn("Updating Product: ")
     resetFields()
   }
 
@@ -83,6 +83,22 @@ const CreateProductScreen = () => {
     }
   };
 
+  const onDelete = () => {
+    console.warn("Deleeete!")
+  }
+
+  const confirmDelete = () => {
+    Alert.alert("Confirm", "Are you sure you want to delete this product?", [
+      {
+        text: "cancel",
+      },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: onDelete
+      }
+    ])
+  }
 
 
   return (
@@ -105,6 +121,7 @@ const CreateProductScreen = () => {
         keyboardType='numeric' />
       <Text style={{ color: 'red' }}>{errors}</Text>
       <Button onPress={onSubmit} text={isUpdating ? "Update" : 'Create'} />
+      {isUpdating && <Text onPress={confirmDelete} style={styles.textButton}>Delete</Text>}
     </View>
   )
 }
