@@ -1,13 +1,40 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useState } from 'react'
 import Colors from '@/src/constants/Colors'
 
 const SignInScreen = () => {
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const resetFields = () => {
+    setEmail("");
+    setPassword("")
+  }
+
+  const onSubmit = () => {
+    console.log("sign in attempt")
+    resetFields()
+  }
+
 
   return (
-    <View>
-      <Text>sign-in</Text>
+    <View style={styles.container}>
+      <Text style={styles.label}>Email</Text>
+      <TextInput
+        value={email}
+        onChangeText={setEmail}
+        placeholder='Email'
+        style={styles.input}
+      />
+      <Text style={styles.label}>Password</Text>
+      <TextInput
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry={true}
+        placeholder='Password'
+        style={styles.input}
+      />
     </View>
   )
 }
