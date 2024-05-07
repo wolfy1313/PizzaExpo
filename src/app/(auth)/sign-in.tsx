@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import Colors from '@/src/constants/Colors'
+import Button from '@/src/components/Button'
 
 const SignInScreen = () => {
 
@@ -35,6 +36,7 @@ const SignInScreen = () => {
         placeholder='Password'
         style={styles.input}
       />
+      <Button onPress={onSubmit} text='Sign In' />
     </View>
   )
 }
