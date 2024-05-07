@@ -7,6 +7,7 @@ const SignInScreen = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [hidePass, setHidePass] = useState(true)
 
   const resetFields = () => {
     setEmail("");
@@ -32,7 +33,7 @@ const SignInScreen = () => {
       <TextInput
         value={password}
         onChangeText={setPassword}
-        secureTextEntry={true}
+        secureTextEntry={hidePass ? true : false}
         placeholder='Password'
         style={styles.input}
       />
