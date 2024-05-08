@@ -2,7 +2,8 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import React, { useState } from 'react'
 import Colors from '@/src/constants/Colors'
 import Button from '@/src/components/Button'
-import { Stack } from 'expo-router'
+import { Stack, Link } from 'expo-router'
+
 
 const SignInScreen = () => {
 
@@ -49,7 +50,9 @@ const SignInScreen = () => {
         </TouchableOpacity>
       </View>
       <Button onPress={onSubmit} text='Sign In' />
-      <Text style={styles.textButton}>Create an Account</Text>
+      <Link style={styles.textButton} href={'/sign-up'}>
+        <Text>Create an Account</Text>
+      </Link>
     </View>
   )
 }
