@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   toggleButton: {
     position: 'absolute',
     right: 10,
-    top: 10,
+    top: 14,
   },
   toggleText: {
     color: Colors.light.tint,

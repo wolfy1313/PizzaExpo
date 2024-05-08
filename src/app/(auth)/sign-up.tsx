@@ -27,7 +27,7 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: "Sign In" }} />
+      <Stack.Screen options={{ title: "Sign Up" }} />
       <Text style={styles.label}>Email</Text>
       <TextInput
         value={email}
@@ -48,9 +48,9 @@ const SignUpScreen = () => {
           <Text style={styles.toggleText}>{hidePass ? 'Show' : 'Hide'}</Text>
         </TouchableOpacity>
       </View>
-      <Button onPress={onSubmit} text='Sign In' />
-      <Link style={styles.textButton} href={'/sign-up'}>
-        <Text>Create an Account</Text>
+      <Button onPress={onSubmit} text='Create Account' />
+      <Link style={styles.textButton} href={'/sign-in'}>
+        <Text>Sign In</Text>
       </Link>
     </View>
   )
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   toggleButton: {
     position: 'absolute',
     right: 10,
-    top: 10,
+    top: 14,
   },
   toggleText: {
     color: Colors.light.tint,
