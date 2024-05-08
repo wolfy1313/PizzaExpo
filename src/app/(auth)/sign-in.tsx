@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import React, { useState } from 'react'
 import Colors from '@/src/constants/Colors'
 import Button from '@/src/components/Button'
+import { Stack } from 'expo-router'
 
 const SignInScreen = () => {
 
@@ -26,6 +27,7 @@ const SignInScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: "Sign In" }} />
       <Text style={styles.label}>Email</Text>
       <TextInput
         value={email}
@@ -47,6 +49,7 @@ const SignInScreen = () => {
         </TouchableOpacity>
       </View>
       <Button onPress={onSubmit} text='Sign In' />
+      <Text style={styles.textButton}>Create an Account</Text>
     </View>
   )
 }
