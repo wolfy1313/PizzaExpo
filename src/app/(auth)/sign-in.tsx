@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import Colors from '@/src/constants/Colors'
 import Button from '@/src/components/Button'
@@ -19,6 +19,10 @@ const SignInScreen = () => {
     resetFields()
   }
 
+  const toggleHidePass = () => {
+    setHidePass(!hidePass)
+  }
+
 
   return (
     <View style={styles.container}>
@@ -30,13 +34,18 @@ const SignInScreen = () => {
         style={styles.input}
       />
       <Text style={styles.label}>Password</Text>
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={hidePass ? true : false}
-        placeholder='Password'
-        style={styles.input}
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={hidePass ? true : false}
+          placeholder='Password'
+          style={styles.input}
+        />
+        <TouchableOpacity onPress={toggleHidePass} style={styles.toggleButton}>
+          <Text style={styles.toggleText}>{hidePass ? 'Show' : 'Hide'}</Text>
+        </TouchableOpacity>
+      </View>
       <Button onPress={onSubmit} text='Sign In' />
     </View>
   )
@@ -67,6 +76,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     marginTop: 5,
+  },
+  passwordContainer: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
+  toggleButton: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
+  },
+  toggleText: {
+    color: Colors.light.tint,
   },
   label: {
     color: 'gray',
