@@ -17,8 +17,9 @@ const OrderListItem = ({ order }: OrderListItemProps) => {
   return (
     <Link href={`/${segments[0]}/orders/${order.id}`} asChild>
       <Pressable style={styles.container}>
+        <Text style={styles.orderNumber}>Order #{order.id}</Text>
         <Text>{dayjs(order.created_at).fromNow()}</Text>
-        <Text>{ }</Text>
+        <Text style={styles.status}>{order.status}</Text>
       </Pressable>
     </Link>
   )
@@ -32,6 +33,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     flex: 1,
-    maxWidth: '50%'
+    minWidth: '100%'
+  },
+  orderNumber: {
+    fontWeight: 'bold'
+  },
+  status: {
+    alignSelf: 'flex-end',
+    // alignContent: 'center'
+    // justifyContent: 'center'
+    // verticalAlign: 'middle',
+    // textAlignVertical: 'center'
   },
 })
