@@ -22,6 +22,9 @@ const OrderListItem = ({ item }: OrderListItemProps) => {
         style={styles.image}
         resizeMode='contain'
       />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.title}>{item.products.name}</Text>
+      </View>
     </View>
   )
 }
@@ -47,6 +50,9 @@ const styles = StyleSheet.create({
     // textAlignVertical: 'center'
   },
   image: {
+
+  },
+  title: {
 
   }
 })
