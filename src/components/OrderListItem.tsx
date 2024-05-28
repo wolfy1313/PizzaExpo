@@ -3,16 +3,16 @@ import React from 'react'
 import { Order, OrderItem } from '../types'
 import { Link, useSegments } from 'expo-router'
 import dayjs from 'dayjs'
-import { defaultPizzaImage } from './ProductListItem'
-import Colors from '../constants/Colors'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 type OrderListItemProps = {
   order: Order
 }
 
+dayjs.extend(relativeTime)
+
 const OrderListItem = ({ order }: OrderListItemProps) => {
   const segments = useSegments()
-  const dayjs = require('dayjs')
   const relativeTime = require('dayjs/plugin/relativeTime')
   dayjs.extend(relativeTime)
 
