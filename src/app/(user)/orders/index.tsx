@@ -3,7 +3,7 @@ import React from 'react'
 import orders from '@/assets/data/orders'
 import OrderListItem from '@/src/components/OrderListItem'
 
-const index = () => {
+export default function OrdersScreen() {
   return (
     <FlatList
       data={orders}
@@ -15,6 +15,5 @@ const index = () => {
   )
 }
 
-export default index
 
 const styles = StyleSheet.create({})
