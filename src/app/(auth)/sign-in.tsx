@@ -9,7 +9,7 @@ const SignInScreen = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [hidePass, setHidePass] = useState(true)
+  // const [hidePass, setHidePass] = useState(true)
 
   const resetFields = () => {
     setEmail("");
@@ -21,9 +21,9 @@ const SignInScreen = () => {
     resetFields()
   }
 
-  const toggleHidePass = () => {
-    setHidePass(!hidePass)
-  }
+  // const toggleHidePass = () => {
+  //   setHidePass(!hidePass)
+  // }
 
 
   return (
@@ -41,13 +41,13 @@ const SignInScreen = () => {
         <TextInput
           value={password}
           onChangeText={setPassword}
-          secureTextEntry={hidePass ? true : false}
+          secureTextEntry
           placeholder='Password'
           style={styles.input}
         />
-        <TouchableOpacity onPress={toggleHidePass} style={styles.toggleButton}>
-          <Text style={styles.toggleText}>{hidePass ? 'Show' : 'Hide'}</Text>
-        </TouchableOpacity>
+        {/* <TouchableOpacity  style={styles.toggleButton}>
+          <Text style={styles.toggleText}>{}</Text>
+        </TouchableOpacity> */}
       </View>
       <Button onPress={onSubmit} text='Sign In' />
       <Link style={styles.textButton} href={'/sign-up'}>
