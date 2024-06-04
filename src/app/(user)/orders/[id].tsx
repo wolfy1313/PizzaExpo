@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
+import { Stack, useLocalSearchParams } from 'expo-router'
 import orders from '@/assets/data/orders'
 import OrderListItem from '@/src/components/OrderListItem'
 
@@ -16,12 +16,19 @@ const OrderDetailsScreen = () => {
   }
 
   return (
-    <View>
-      {/* <OrderListItem order={}/> */}
+    <View style={styles.container}>
+      <Stack.Screen options={{ title: `Order #${order.id}` }} />
+      <OrderListItem order={order} />
     </View>
   )
 }
 
 export default OrderDetailsScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    padding: 10
+  },
+})
