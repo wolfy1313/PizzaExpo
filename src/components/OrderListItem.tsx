@@ -13,8 +13,6 @@ dayjs.extend(relativeTime)
 
 const OrderListItem = ({ order }: OrderListItemProps) => {
   const segments = useSegments()
-  const relativeTime = require('dayjs/plugin/relativeTime')
-  dayjs.extend(relativeTime)
 
   return (
     <Link href={`/${segments[0]}/orders/${order.id}`} asChild>

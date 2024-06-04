@@ -28,6 +28,7 @@ export default OrderDetailsScreen
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
+    gap: 10,
     flex: 1,
     padding: 10
   },
