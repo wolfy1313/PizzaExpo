@@ -17,6 +17,9 @@ const OrderItemListItem = ({ item }: OrderItemListItemProps) => {
         style={styles.image}
         resizeMode="contain"
       />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.title}>{item.products.name}</Text>
+      </View>
     </View>
   )
 }
@@ -42,6 +45,20 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 16,
     marginBottom: 5,
+  },
+  subtitleContainer: {
+    flexDirection: 'row',
+    gap: 5,
+  },
+  quantitySelector: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  quantity: {
+    fontWeight: '500',
+    fontSize: 18,
   },
   price: {
     color: Colors.light.tint,
