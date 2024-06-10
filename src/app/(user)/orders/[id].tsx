@@ -4,9 +4,12 @@ import { Stack, useLocalSearchParams } from 'expo-router'
 import orders from '@/assets/data/orders'
 import OrderListItem from '@/src/components/OrderListItem'
 import OrderItemListItem from '@/src/components/OrderItemListItem'
+import useMaxBrightness from '@/src/components/UseMaxBrightness'
 
 const OrderDetailsScreen = () => {
   const { id } = useLocalSearchParams()
+
+  useMaxBrightness()
 
   const order = orders.find((o) => o.id.toString() === id)
 

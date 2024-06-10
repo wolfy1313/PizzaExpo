@@ -1,7 +1,6 @@
 import { Platform } from 'react-native'
 import * as Brightness from "expo-brightness"
 import { useEffect, useState } from 'react'
-import React from 'react'
 import { useIsFocused } from '@react-navigation/native'
 
 export function useMaxBrightness(disabled: boolean = false) {
