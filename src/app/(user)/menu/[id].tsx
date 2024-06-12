@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Button from '@/src/components/Button'
 import { useCart } from '@/src/providers/CartProvider'
 import { PizzaSize } from '@/src/types'
+import useMaxBrightness from '@/src/components/UseMaxBrightness'
 
 const sizes: PizzaSize[] = ['S', 'M', 'L', 'XL']
 
@@ -14,6 +15,7 @@ const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams()
   const { addItem } = useCart()
   const router = useRouter()
+  useMaxBrightness
 
   const [selectedSize, setSelectedSize] = useState<PizzaSize>('M')
 

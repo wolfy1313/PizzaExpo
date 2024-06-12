@@ -7,15 +7,27 @@ export function useMaxBrightness(disabled = false) {
   const [originalBrightness, setOriginalBrightness] = useState<number | null>(null);
   const isFocused = useIsFocused();
 
+  const requestPermissions = async () => {
+    const { status } = await Brightness.requestPermissionsAsync();
+    if (status !== 'granted') {
+      console.warn('Brightness permission not granted');
+    }
+    return status === 'granted';
+  };
+
   const maxBrightness = async () => {
     if (originalBrightness !== null) return;
+    const hasPermission = await requestPermissions();
+    if (!hasPermission) return;
+
     console.log("Setting brightness to max...");
     try {
       const currentBrightness = await Brightness.getBrightnessAsync();
       console.log("Current brightness:", currentBrightness);
       setOriginalBrightness(currentBrightness);
+      console.log("line 17 original brightness: ", originalBrightness)
       await Brightness.setBrightnessAsync(1);
-      console.log("Brightness set to max, current brightness: ", currentBrightness);
+      console.log("line 19 Brightness set to max, original brightness: ", originalBrightness, "current brightness: ", currentBrightness);
 
     } catch (error) {
       console.error("Error setting brightness to max:", error);
@@ -31,8 +43,8 @@ export function useMaxBrightness(disabled = false) {
       } else {
         await Brightness.setBrightnessAsync(originalBrightness);
       }
+      console.log("Brightness reset to original value of: ", originalBrightness);
       setOriginalBrightness(null);
-      console.log("Brightness reset to original value.");
     } catch (error) {
       console.error("Error resetting brightness to original value:", error);
     }
