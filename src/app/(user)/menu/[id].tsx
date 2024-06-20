@@ -15,7 +15,7 @@ const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams()
   const { addItem } = useCart()
   const router = useRouter()
-  useMaxBrightness
+  useMaxBrightness()
 
   const [selectedSize, setSelectedSize] = useState<PizzaSize>('M')
 

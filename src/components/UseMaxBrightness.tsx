@@ -1,11 +1,11 @@
 import { Platform } from 'react-native';
 import * as Brightness from 'expo-brightness';
-import { useEffect, useState } from 'react';
-import { useIsFocused } from '@react-navigation/native';
+import { useEffect, useState, useRef } from 'react';
 
 export function useMaxBrightness(disabled = false) {
   const [originalBrightness, setOriginalBrightness] = useState<number | null>(null);
-  const isFocused = useIsFocused();
+  const originalBrightnessRef = useRef<number | null>(null)
+
 
   const requestPermissions = async () => {
     const { status } = await Brightness.requestPermissionsAsync();
@@ -16,7 +16,7 @@ export function useMaxBrightness(disabled = false) {
   };
 
   const maxBrightness = async () => {
-    if (originalBrightness !== null) return;
+    if (originalBrightnessRef.current !== null) return;
     const hasPermission = await requestPermissions();
     if (!hasPermission) return;
 
@@ -25,9 +25,10 @@ export function useMaxBrightness(disabled = false) {
       const currentBrightness = await Brightness.getBrightnessAsync();
       console.log("Current brightness:", currentBrightness);
       setOriginalBrightness(currentBrightness);
-      console.log("line 17 original brightness: ", originalBrightness)
+      originalBrightnessRef.current = currentBrightness
+      console.log("line 17 original brightness: ", originalBrightnessRef.current)
       await Brightness.setBrightnessAsync(1);
-      console.log("line 19 Brightness set to max, original brightness: ", originalBrightness, "current brightness: ", currentBrightness);
+      console.log("line 19 Brightness set to max, original brightness: ", originalBrightnessRef.current, "current brightness: ", currentBrightness);
 
     } catch (error) {
       console.error("Error setting brightness to max:", error);
@@ -35,15 +36,15 @@ export function useMaxBrightness(disabled = false) {
   };
 
   const resetBrightness = async () => {
-    if (originalBrightness === null) return;
+    if (originalBrightnessRef.current === null) return;
     console.log("Resetting brightness to original value...");
     try {
       if (Platform.OS === 'android') {
         await Brightness.restoreSystemBrightnessAsync();
       } else {
-        await Brightness.setBrightnessAsync(originalBrightness);
+        await Brightness.setBrightnessAsync(originalBrightnessRef.current);
       }
-      console.log("Brightness reset to original value of: ", originalBrightness);
+      console.log("Brightness reset to original value of: ", originalBrightnessRef.current);
       setOriginalBrightness(null);
     } catch (error) {
       console.error("Error resetting brightness to original value:", error);
@@ -51,19 +52,22 @@ export function useMaxBrightness(disabled = false) {
   };
 
   useEffect(() => {
-    if (disabled) {
-      if (originalBrightness !== null) resetBrightness();
-      return;
-    }
-    if (isFocused) {
-      maxBrightness();
+    if (!disabled) {
+      maxBrightness()
     } else {
-      resetBrightness();
+      resetBrightness()
     }
+
     return () => {
       resetBrightness();
     };
-  }, [disabled, isFocused]);
+  }, [disabled]);
+
+  useEffect(() => {
+    return () => {
+      resetBrightness();
+    };
+  }, []);
 }
 
 export default useMaxBrightness;

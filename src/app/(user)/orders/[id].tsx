@@ -9,6 +9,7 @@ import useMaxBrightness from '@/src/components/UseMaxBrightness'
 const OrderDetailsScreen = () => {
   const { id } = useLocalSearchParams()
 
+  console.log("calling useMaxBrightness on orderDetails screen. . .")
   useMaxBrightness()
 
   const order = orders.find((o) => o.id.toString() === id)
