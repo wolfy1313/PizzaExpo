@@ -7,7 +7,7 @@ import { Stack } from 'expo-router'
 export default function OrdersScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: "Archive" }} />
+      {/* <Stack.Screen options={{ title: "Archive" }} /> */}
       <FlatList
         data={orders}
         renderItem={({ item }) => <OrderListItem order={item} />}
