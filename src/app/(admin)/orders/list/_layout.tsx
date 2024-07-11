@@ -8,7 +8,7 @@ const TopTabs = withLayoutContext(createMaterialTopTabNavigator().Navigator)
 
 export default function OrderListNavigator() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'White' }}>
       <TopTabs />
     </SafeAreaView>
   )
