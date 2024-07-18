@@ -61,7 +61,7 @@ const SignUpScreen = () => {
           <Text style={styles.toggleText}>{hidePass ? 'Show' : 'Hide'}</Text>
         </TouchableOpacity>
       </View>
-      <Button onPress={onSubmit} text='Create Account' />
+      <Button onPress={signUpWithEmail} text='Create Account' />
       <Link style={styles.textButton} href={'/sign-in'}>
         <Text>Sign In</Text>
       </Link>
